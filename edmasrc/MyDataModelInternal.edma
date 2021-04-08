@@ -1,0 +1,23 @@
+DataModel MyDataModel
+{
+    Kind Person
+    {
+        firstName+: Name,
+        lastName+: Name,
+        email+: Email,
+        Unique(email)
+    }
+    Kind Teacher extends Person
+    {
+
+    }
+    Kind Course
+    {
+        name: Name,
+        Unique(name)
+    }
+
+    Relation CourseEnrollment Course:course >-< Person:student
+
+    Relation TeacherAssignment Course >-- Teacher:teacher
+}

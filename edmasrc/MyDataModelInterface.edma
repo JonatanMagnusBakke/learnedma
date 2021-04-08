@@ -1,0 +1,109 @@
+DataModel MyDataModel
+{
+    Action createPerson
+    {
+        Description:
+            "Creates a new person"
+        Input:
+            firstName: Name,
+            lastName: Name,
+            email: Email
+        Output:
+            id: PersonID
+        ErrorCodes:
+            1 - "Email already exists"
+    }
+
+    Action createTeacher
+    {
+        Description:
+            "Creates a new teacher"
+        Input:
+            firstName: Name,
+            lastName: Name,
+            email: Email
+        Output:
+            id: TeacherID
+        ErrorCodes:
+            1 - "Email already exists"
+    }
+
+    Action createCourse
+    {
+        Description:
+            "Creates a new course"
+        Input:
+            name: Name
+        Output:
+            id: CourseID
+        ErrorCodes:
+            1 - "Course already exists"
+    }
+
+    Action assignStudentToCourse
+    {
+        Description:
+            "Assigns a Student to a Course"
+        Input:
+            studentID: PersonID,
+            courseID: CourseID
+        ErrorCodes:
+            1 - "Student ID does not exist",
+            2 - "Course ID does not exist",
+            3 - "Student already assigned to the Course"
+    }
+
+    Action assignTeacherToCourse
+    {
+        Description:
+            "Assigns the Teacher for the Course"
+        Input:
+            teacherID: TeacherID,
+            courseID: CourseID
+        ErrorCodes:
+            1 - "Teacher ID does not exist",
+            2 - "Course ID does not exist",
+            3 - "A Teacher is already assigned"
+    }
+
+    View getAllPersons
+    {
+        Description:
+            "View all Persons"
+        Output:
+            personList: PersonList
+    }
+
+    View getAllCourses
+    {
+        Description:
+            "View all Courses"
+        Output:
+            courseList: CourseList
+    }
+
+    View getCourseStudents
+    {
+        Description:
+            "View all Students on Course"
+        Input:
+            courseID: CourseID
+        Output:
+            studentList: PersonList
+        ErrorCodes:
+            1 - "Course does not exist"
+    }
+
+    View getCourseTeacher
+    {
+        Description:
+            "View Teacher for Course"
+        Input:
+            courseID: CourseID
+        Output:
+            teacher?: Teacher
+        ErrorCodes:
+            1 - "Course does not exist",
+            2 - "Not Teacher for Course"
+    }
+}
